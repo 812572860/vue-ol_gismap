@@ -1,0 +1,78 @@
+<meta charset="utf-8">
+<title>olMap demo</title>
+<script src="https://unpkg.com/vue"></script>
+<script src="./olMap.umd.js"></script>
+
+<!-- <link rel="stylesheet" href="./olMap.css"> -->
+<style>
+  html, body, #app{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+<div id="app">
+  <demo :extent="extent" :initialZoom="17" v-bind="$attrs" @onMapReady="onMapReady"></demo>
+</div>
+
+<script>
+new Vue({
+  components: {
+    demo: olMap
+  },
+  data: {
+    nodeServer: 'http://localhost:8092',
+    map: null,
+    extent: [102.49480247497557, 24.327858634309163, 102.57685661315917, 24.372664571886446],
+  },
+  methods: {
+    onMapReady (map) {
+      this.map = map
+      this.addImageLayer(`${this.nodeServer}/image`, [102.49480247497557, 24.327858634309163, 102.57685661315917, 24.372664571886446], 10, 18)
+      this.map.on('singleclick', evt => {
+        console.log('position:   ' + evt.coordinate)
+      })
+    },
+     // 添加离线地图影像
+     addImageLayer (tileServer, extent, minZoom, maxZoom) {
+      let mapExtent
+      if (extent) {
+        // 左下角
+        let lbCoord = [extent[0], extent[1]]
+        // 右上角
+        const rtCoord = [extent[2], extent[3]]
+
+        mapExtent = [lbCoord.x, lbCoord.y, rtCoord.x, rtCoord.y]
+        console.log(mapExtent)
+      }
+      // 添加切片
+      let source = {
+        tileUrlFunction: (tileCoord, pixelRatio, projection) => {
+          let z = tileCoord[0]
+          let y = tileCoord[1]
+          let x = tileCoord[2]
+          let url = `${tileServer}/${z}/${y}/${x}`
+          return url
+        },
+        zIndex: 0,
+      }
+      // 设置切片渲染范围
+      if (mapExtent) {
+        source.extent = mapExtent
+      }
+      if(minZoom) {
+        source.minZoom = minZoom
+      }
+      if(maxZoom) {
+        source.maxZoom = maxZoom
+      }
+
+      this.map.addLayer(new Tile({
+        source: new XYZ(source)
+      }))
+    },
+  }
+}).$mount('#app')
+</script>

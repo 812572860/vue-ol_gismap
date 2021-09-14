@@ -1,0 +1,66 @@
+{
+  "name": "vue-ol_gismap",
+  "version": "0.0.6",
+  "private": false,
+  "license": "MIT",
+  "author": "linyx",
+  "description": "基于openlayers5+开发的一套简单的vue地图组件库",
+  "keywords": [
+    "openlayers",
+    "ol",
+    "vue",
+    "gisMap"
+  ],
+  "main": "lib/olMap.common.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build:lib": "vue-cli-service build --target lib --name olMap --dest lib ./src/components/index.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
+    "ol": "^5",
+    "proj4": "^2.7.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-umd": "^7.14.5",
+    "@vue/cli-plugin-babel": "^4.5.0",
+    "@vue/cli-plugin-eslint": "^4.5.0",
+    "@vue/cli-service": "^4.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "css": "^3.0.0",
+    "css-loader": "^5.1.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "file-loader": "^6.2.0",
+    "sass": "^1.32.8",
+    "sass-loader": "10",
+    "scss": "^0.2.4",
+    "scss-loader": "^0.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

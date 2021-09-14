@@ -1,0 +1,139 @@
+
+@import '~ol/ol.css';
+@import './variables';
+
+.ol-control {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  padding: 1px;
+
+  button {
+    display: block;
+    margin: 1px;
+    padding: 0;
+    color: white;
+    font-size: 1.14em;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    height: 1.375em;
+    width: 1.375em;
+    line-height: 0.4em;
+    background-color: $--background-color;
+    border: none;
+    border-radius: 2px;
+  }
+}
+.ol-rotate {
+  top: 0.5em;
+  right: 4.5em;
+  -webkit-transition: opacity 0.25s linear, visibility 0s linear;
+  transition: opacity 0.25s linear, visibility 0s linear;
+}
+.ol-zoom {
+  top: 0.5em;
+  right: 0.5em;
+  left: initial; // 防止原生样式中left值导致设置的right不起作用
+  display: flex;
+  &-in {
+    border-radius: 2px 2px 0 0;
+  }
+  &-out {
+    border-radius: 0 0 2px 2px;
+  }
+}
+.ol-scale-line {
+  background: rgba(1, 48, 109, 0.1);
+  border-radius: 4px;
+  bottom: 8px;
+  left: 1rem;
+  padding: 2px;
+  position: absolute;
+
+  &-inner {
+    border: 1px solid #eee;
+    border-top: none;
+    color: #eee;
+    font-size: 1rem;
+    text-align: center;
+    margin: 1px;
+    will-change: contents, width;
+  }
+}
+
+.ol-full-screen{
+  top: 2.5rem;
+}
+
+.mouse-position {
+  position: absolute;
+  left: 160px;
+  bottom: 10px;
+  background: $--background-color;
+  color: $--color-default;
+  z-index: 1;
+  font-size: 12px;
+}
+
+
+.gis-control-zoom{
+  // bottom: 10px;
+  // right: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  height: 32px;
+  background: rgba(30,47,96,0.8);
+  border-radius: 16px;
+  border: 1px solid rgba(82,104,169,1);
+  z-index: 1;
+
+  &:hover{
+    background: rgba(30,47,96,0.8);
+  }
+
+  button{
+    color: $--color-text;
+    background-color: transparent;
+    font-size: 2.4rem;
+    height: 100%;
+    line-height: 32px;
+    cursor: pointer;
+
+    &:hover, &:focus{
+      background-color: transparent;
+    }
+  }
+
+  &-out{
+    font-size: 2rem !important;
+  }
+}
+
+.gis-control-rotate,
+.gis-control-fullscreen {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  z-index: 1;
+  cursor: pointer;
+
+  &:hover{
+    background-color: transparent;
+  }
+
+  button {
+    width: 100%;
+    height: calc(100% - 2px);
+    margin: 0;
+    background-color: transparent;
+    color: $--color-text;
+    cursor: pointer;
+
+    &:hover, &:focus{
+      background-color: transparent;
+    }
+  }
+}
